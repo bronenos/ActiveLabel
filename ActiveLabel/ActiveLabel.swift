@@ -57,6 +57,9 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
     @IBInspectable public var minimumLineHeight: CGFloat = 0 {
         didSet { updateTextStorage(parseText: false) }
     }
+    @IBInspectable public var firstLineHeadIndent: CGFloat = 0 {
+        didSet { updateTextStorage(parseText: false) }
+    }
     @IBInspectable public var highlightFontName: String? = nil {
         didSet { updateTextStorage(parseText: false) }
     }
@@ -385,6 +388,7 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
         paragraphStyle.lineBreakMode = NSLineBreakMode.byWordWrapping
         paragraphStyle.alignment = textAlignment
         paragraphStyle.lineSpacing = lineSpacing
+        paragraphStyle.firstLineHeadIndent = firstLineHeadIndent
         paragraphStyle.minimumLineHeight = minimumLineHeight > 0 ? minimumLineHeight: self.font.pointSize * 1.14
         attributes[NSParagraphStyleAttributeName] = paragraphStyle
         mutAttrString.setAttributes(attributes, range: range)
